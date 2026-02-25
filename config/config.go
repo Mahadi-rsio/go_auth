@@ -4,8 +4,6 @@ import (
 	"log"
 	"os"
 	"strconv"
-
-	"github.com/joho/godotenv"
 )
 
 type Config struct {
@@ -18,12 +16,6 @@ type Config struct {
 var AppConfig *Config
 
 func Load() {
-	// Load .env file (if exists)
-	err := godotenv.Load()
-	if err != nil {
-		log.Println("No .env file found, using system environment variables")
-	}
-
 	required := []string{"PORT", "DB_PATH", "REDIS_URL"}
 
 	values := make(map[string]string)
