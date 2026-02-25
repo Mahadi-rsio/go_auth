@@ -5,7 +5,7 @@ import (
 
 	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
-	"gorm.io/driver/sqlite"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
@@ -13,7 +13,7 @@ var Database *gorm.DB
 var DatabaseError error
 
 func CreateDB(url string) {
-	Database, DatabaseError = gorm.Open(sqlite.Open(url), &gorm.Config{})
+	Database, DatabaseError = gorm.Open(postgres.Open(url), &gorm.Config{})
 	Database.AutoMigrate(
 		&User{},
 		&KeyEntity{},
